@@ -103,12 +103,12 @@ return [
 
 
     'menu' => [
-        [
-            'header'    => 'ADMINISTRASI',
-            'can'       => 'admin',
-            'url'       => '',
-            'text'      => 'Inabay',
-        ],
+        // [
+        //     'header'    => 'ADMINISTRASI',
+        //     'can'       => 'admin',
+        //     'url'       => '',
+        //     'text'      => 'Inabay',
+        // ],
         [
 
             'text'  => 'Produk',

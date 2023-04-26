@@ -56,7 +56,7 @@
                     <td>{{$top_up->bank_name}}</td>
                     <td>{{$top_up->account_name}}</td>
                     <td>{{$top_up->account_no}}</td>
-                    <td>@money($top_up->amount)</td>
+                    <td>{{$top_up->amount}} {{--money--}}</td>
                     <td>
                         <button id="status_process_{{$top_up->id}}" class="btn btn-xs btn-{{$top_up->status=='Proses'?'warning':'default'}} btn-status" data-id="{{$top_up->id}}" data-status="Proses">
                             <i class="fas fa-spinner"></i> Proses

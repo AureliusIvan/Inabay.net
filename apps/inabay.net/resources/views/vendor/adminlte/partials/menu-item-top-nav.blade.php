@@ -1,6 +1,6 @@
 @if (is_array($item))
-    <li class="{{ $item['top_nav_class'] }}">
-        <a href="{{ url($item['href']) }}"
+    <li class="">
+        <a href=""
            @if (isset($item['submenu'])) class="dropdown-toggle" data-toggle="dropdown" @endif
            @if (isset($item['target'])) target="{{ $item['target'] }}" @endif
         >

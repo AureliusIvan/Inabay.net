@@ -296,6 +296,7 @@ class SalesController extends Controller
         }
 
         $sales->receiver_address    = "-";
+        // problem nya ini
         $sales->courier_id          = 19;
         $sales->description         = $request->description;
         $sales->booking_code        = "-";
