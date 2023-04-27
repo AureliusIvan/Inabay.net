@@ -32,7 +32,7 @@ class RegisterRequest extends FormRequest
             'city' => ['required', 'string'],
             'zipcode' => ['required', 'numeric'],
             'phone' => ['required', 'numeric', 'min:11'],
-            'shop_name' => ['required', 'string'],
+            'shop_name' => ['required', 'string', 'unique:users'],
             'bank_name' => ['required', 'string'],
             'bank_acc_name' => ['required', 'string'],
             'bank_acc_no' => ['required', 'string'],

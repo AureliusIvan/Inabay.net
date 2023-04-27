@@ -89,6 +89,7 @@ Route::get('/members/{id}', ['middleware' => 'auth', 'uses' => MemberController:
 Route::get('/members/edit/{id}', ['middleware' => 'auth', 'uses' => MemberController::class . '@edit']);
 Route::post('/members/edit/{id}', ['middleware' => 'auth', 'uses' => MemberController::class . '@update']);
 Route::delete('/members/delete/{id}', ['middleware' => 'auth', 'uses' => MemberController::class . '@destroy']);
+Route::get('/members/', ['middleware' => 'auth', 'uses' => UserController::class . '@searchUser'])->name('member.search');
 
 Route::get('/users', ['middleware' => 'auth', 'uses' =>  UserController::class . '@index']);
 Route::get('/users/new', ['middleware' => 'auth', 'uses' => UserController::class . '@create']);

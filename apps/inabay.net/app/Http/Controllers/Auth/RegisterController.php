@@ -33,6 +33,10 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
+        if (!$request->validated()) {
+            return redirect()->back()->withErrors($request);
+        }
+
         User::create($request->validated());
 
         return view('auth.validation');
