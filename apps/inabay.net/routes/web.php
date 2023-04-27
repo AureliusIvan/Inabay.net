@@ -19,6 +19,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::post('/login', [UserController::class, 'login'])->name('login');
 Auth::routes();
 Route::get('/', function () {
     return redirect('/login');
@@ -34,6 +35,12 @@ Route::get('/', function () {
 //    return "Website sedang dalam perbaikan. Silahkan mencoba beberapa saat lagi.";
 //});
 Route::get('/home', MemberController::class . '@index')->name('home');
+
+## LOGIN SEMENTARA TANPA HARUS DITERIMA ADMIN ##
+Route::get('/home/user', function () {
+    return view('home');
+})->middleware('auth');
+
 
 ## GIFT ##
 Route::get('/gifts/search', ['middleware' => 'auth', 'uses' => ProductController::class . '@search']);
