@@ -19,6 +19,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::post('/login', [UserController::class, 'login'])->name('login');
 Auth::routes();
 Route::get('/', function () {
     return redirect('/login');
@@ -34,6 +35,12 @@ Route::get('/', function () {
 //    return "Website sedang dalam perbaikan. Silahkan mencoba beberapa saat lagi.";
 //});
 Route::get('/home', MemberController::class . '@index')->name('home');
+
+## LOGIN SEMENTARA TANPA HARUS DITERIMA ADMIN ##
+Route::get('/home/user', function () {
+    return view('home');
+})->middleware('auth');
+
 
 ## GIFT ##
 Route::get('/gifts/search', ['middleware' => 'auth', 'uses' => ProductController::class . '@search']);
@@ -82,6 +89,7 @@ Route::get('/members/{id}', ['middleware' => 'auth', 'uses' => MemberController:
 Route::get('/members/edit/{id}', ['middleware' => 'auth', 'uses' => MemberController::class . '@edit']);
 Route::post('/members/edit/{id}', ['middleware' => 'auth', 'uses' => MemberController::class . '@update']);
 Route::delete('/members/delete/{id}', ['middleware' => 'auth', 'uses' => MemberController::class . '@destroy']);
+Route::get('/members/', ['middleware' => 'auth', 'uses' => UserController::class . '@searchUser'])->name('member.search');
 
 Route::get('/users', ['middleware' => 'auth', 'uses' =>  UserController::class . '@index']);
 Route::get('/users/new', ['middleware' => 'auth', 'uses' => UserController::class . '@create']);

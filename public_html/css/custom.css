@@ -2,8 +2,8 @@ section.content .row h1 {
     margin-top: 2px;
 }
 
-section.content-header h4{
-    margin:0;
+section.content-header h4 {
+    margin: 0;
 }
 
 section.content .header h1 {
@@ -59,14 +59,17 @@ span.cart-qty {
     display: inline;
 }
 
-body.login-page, body.register-page {
+body.login-page,
+body.register-page {
     background: #0c1114 !important;
 }
 
-.login-logo, .register-logo {
-    margin: 0 !important;
+.login-logo,
+.register-logo {
+    margin: 0 0 40px 0 !important;
 }
 
-.login-box, .register-box {
+.login-box,
+.register-box {
     margin: 3% auto !important;
 }

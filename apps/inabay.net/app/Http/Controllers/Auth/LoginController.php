@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -19,22 +23,40 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(LoginRequest $request)
+    {
+        $credentials = $request->validated();
+        if (!Auth::validate($credentials)) {
+            return Redirect::back()->withErrors(trans('auth.failed'));
+        }
+
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        #check if the user is activated or not
+        if ($user->is_active == 0) {
+            return view('auth.validation');
+        }
+        Auth::login($user);
+        #sementara?
+        return redirect('home');
+    }
+
+    public function logout()
+    {
+        Session::flush();
+
+        Auth::logout();
+
+        return redirect('/login');
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Svg\Tag\Rect;
 
 class UserController extends Controller
 {
@@ -150,6 +151,22 @@ class UserController extends Controller
     {
         $user_stocks = UserStock::where('user_id', Auth::user()->id)->paginate(20);
         return view('inabay.users.my_account.stock', compact('user_stocks'));
+    }
+
+    public function searchUser(Request $request)
+    {
+        $search = $request->search;
+        $page = "member";
+
+        $users = User::query()
+            ->Where('id', 'LIKE', "%{$search}%")
+            ->orWhere('name', 'LIKE', "%{$search}%")
+            ->orWhere('shop_name', 'LIKE', "%{$search}%")
+            ->orWhere('city', 'LIKE', "%{$search}%")
+            ->orWhere('phone', 'LIKE', "%{$search}%")
+            ->paginate(25);
+
+        return view('inabay.users.index', compact('users', 'page'));
     }
 
     private function month_str($month)
